@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class ChaosController {
 
     @PostMapping
-    public ResponseEntity<?> killInstance() {
-        return ResponseEntity.internalServerError().build();
+    public ResponseEntity<Void> killInstance() {
+        System.exit(0);
+        return ResponseEntity.ok().build();
     }
 }
