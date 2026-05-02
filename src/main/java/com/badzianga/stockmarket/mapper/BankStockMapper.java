@@ -1,0 +1,21 @@
+package com.badzianga.stockmarket.mapper;
+
+import com.badzianga.stockmarket.model.dto.BankStockDto;
+import com.badzianga.stockmarket.model.entity.BankStock;
+
+public class BankStockMapper {
+
+    public static BankStockDto toDto(BankStock stock) {
+        return new BankStockDto(
+                stock.getName(),
+                stock.getQuantity()
+        );
+    }
+
+    public static BankStock toEntity(BankStockDto dto) {
+        return new BankStock(
+                dto.getName(),
+                dto.getQuantity()
+        );
+    }
+}
