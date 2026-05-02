@@ -1,10 +1,7 @@
 package com.badzianga.stockmarket.model.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "wallet_stocks", uniqueConstraints = @UniqueConstraint(columnNames = {"wallet_id", "stock_name"}))
@@ -12,9 +9,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class WalletStock {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "wallet_id", nullable = false)
@@ -25,4 +23,12 @@ public class WalletStock {
 
     @Column(name = "quantity", nullable = false)
     private int quantity;
+
+    public void incrementQuantity() {
+        ++quantity;
+    }
+
+    public void decrementQuantity() {
+        --quantity;
+    }
 }

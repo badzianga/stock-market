@@ -22,4 +22,12 @@ public class BankStock {
 
     @Column(name = "quantity", nullable = false)
     int quantity;
+
+    public void incrementQuantity() {
+        ++quantity;
+    }
+
+    public void decrementQuantity() {
+        --quantity;
+    }
 }

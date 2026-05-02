@@ -1,5 +1,6 @@
 package com.badzianga.stockmarket.model.entity;
 
+import com.badzianga.stockmarket.model.TransactionType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,13 +14,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AuditLog {
-    public enum TransactionType {
-        SELL,
-        BUY,
-    }
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Enumerated(EnumType.STRING)
