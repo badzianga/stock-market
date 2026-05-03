@@ -47,7 +47,7 @@ public class WalletService {
         BankStock stock = bankStockRepository.findByName(stockName)
                 .orElseThrow(() -> new StockDoesntExistException("Stock " + stockName + " does not exist"));
 
-        if (stock.getQuantity() == 0) {
+        if (stock.getQuantity() <= 0) {
             throw new StockNotAvailableException("Stock " + stockName + " is not available at this moment");
         }
 
@@ -82,6 +82,9 @@ public class WalletService {
 
         walletStockRepository.findByWalletIdAndStockName(walletId, stockName)
                 .ifPresentOrElse(walletStock -> {
+                    if (walletStock.getQuantity() <= 0) {
+                        throw new StockNotAvailableException("Wallet does not contain stock " + stockName);
+                    }
                     walletStock.decrementQuantity();
                     walletStockRepository.save(walletStock);
                     stock.incrementQuantity();
