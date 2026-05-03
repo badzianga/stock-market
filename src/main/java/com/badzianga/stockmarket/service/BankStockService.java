@@ -6,6 +6,7 @@ import com.badzianga.stockmarket.model.entity.BankStock;
 import com.badzianga.stockmarket.repository.BankStockRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
 public class BankStockService {
     private final BankStockRepository bankStockRepository;
 
+    @Transactional
     public void setStocks(List<BankStockDto> stocks) {
         bankStockRepository.deleteAll();
 
@@ -25,6 +27,5 @@ public class BankStockService {
 
     public List<BankStock> getAllStocks() {
          return bankStockRepository.findAll();
-
     }
 }

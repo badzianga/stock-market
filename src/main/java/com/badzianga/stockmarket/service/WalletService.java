@@ -13,6 +13,7 @@ import com.badzianga.stockmarket.repository.WalletRepository;
 import com.badzianga.stockmarket.repository.WalletStockRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.List;
@@ -25,6 +26,7 @@ public class WalletService {
     private final WalletStockRepository walletStockRepository;
     private final AuditLogRepository auditLogRepository;
 
+    @Transactional
     public void handleSellOrBuy(TransactionType transactionType, String walletId, String stockName) {
         switch (transactionType) {
             case buy -> buyStock(walletId, stockName);
