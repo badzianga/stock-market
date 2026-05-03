@@ -11,7 +11,15 @@ public class ChaosController {
 
     @PostMapping
     public ResponseEntity<Void> killInstance() {
-        System.exit(0);
+        new Thread(() -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+            System.exit(0);
+        }).start();
+
         return ResponseEntity.ok().build();
     }
 }
