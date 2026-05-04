@@ -7,9 +7,16 @@ which are run using docker-compose.
 
 ## Run
 
-### Linux/MacOS
+If not specified, app runs on port 8080.
+
+### Linux/macOS
 ```bash
 ./run.sh <PORT>
+```
+
+### Windows
+```bat
+./run.ps1 <PORT>
 ```
 
 ## Stop
